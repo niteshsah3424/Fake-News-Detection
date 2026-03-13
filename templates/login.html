@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fake News AI Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+/* BACKGROUND */
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(270deg,#020617,#0f172a,#1e293b,#020617);
+background-size:600% 600%;
+animation:gradientMove 15s ease infinite;
+
+color:white;
+overflow:hidden;
+}
+
+@keyframes gradientMove{
+
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+
+}
+
+/* PARTICLES */
+
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* LOGIN CARD */
+
+.login-box{
+
+width:380px;
+padding:40px;
+
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+
+border-radius:15px;
+
+box-shadow:0 0 25px rgba(0,0,0,0.6);
+
+text-align:center;
+
+border:1px solid rgba(255,255,255,0.08);
+}
+
+/* TITLE */
+
+.login-box h2{
+
+font-size:28px;
+
+background:linear-gradient(45deg,#22c55e,#38bdf8);
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+margin-bottom:25px;
+}
+
+/* INPUT */
+
+.input-box{
+
+margin:15px 0;
+}
+
+input{
+
+width:100%;
+padding:12px;
+
+border:none;
+border-radius:8px;
+
+background:#020617;
+color:white;
+
+font-size:15px;
+
+outline:none;
+
+transition:0.3s;
+}
+
+input:focus{
+
+box-shadow:0 0 10px #22c55e;
+}
+
+/* BUTTON */
+
+button{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+border-radius:10px;
+
+background:linear-gradient(45deg,#22c55e,#16a34a);
+
+color:white;
+
+font-weight:bold;
+font-size:16px;
+
+cursor:pointer;
+
+transition:0.3s;
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 0 15px #22c55e;
+}
+
+/* LINKS */
+
+.links{
+
+margin-top:18px;
+font-size:14px;
+}
+
+.links a{
+
+color:#22c55e;
+text-decoration:none;
+cursor:pointer;
+}
+
+.links a:hover{
+
+text-decoration:underline;
+}
+
+/* FOOTER */
+
+.footer{
+
+margin-top:15px;
+font-size:13px;
+opacity:0.8;
+}
+
+/* HIDDEN */
+
+.hidden{
+
+display:none;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div id="particles-js"></div>
+
+<div class="login-box">
+
+<h2>🧠 FakeNews AI</h2>
+
+<!-- LOGIN FORM -->
+
+<form id="loginForm" action="/login" method="POST">
+
+<div class="input-box">
+<input type="text" name="username" placeholder="Username" required>
+</div>
+
+<div class="input-box">
+<input type="password" name="password" placeholder="Password" required>
+</div>
+
+<button type="submit">Login</button>
+
+</form>
+
+
+<!-- REGISTER FORM -->
+
+<form id="registerForm" class="hidden" action="/register" method="POST">
+
+<div class="input-box">
+<input type="text" name="username" placeholder="Create Username" required>
+</div>
+
+<div class="input-box">
+<input type="password" name="password" placeholder="Create Password" required>
+</div>
+
+<button type="submit">Create Account</button>
+
+</form>
+
+
+<!-- FORGOT PASSWORD -->
+
+<form id="forgotForm" class="hidden" action="/forgot" method="POST">
+
+<div class="input-box">
+<input type="email" name="email" placeholder="Enter Email" required>
+</div>
+
+<button type="submit">Reset Password</button>
+
+</form>
+
+
+<div class="links">
+
+<p id="loginLinks">
+<a onclick="showRegister()">Create Account</a> |
+<a onclick="showForgot()">Forgot Password</a>
+</p>
+
+<p id="backLink" class="hidden">
+<a onclick="showLogin()">Back to Login</a>
+</p>
+
+</div>
+
+<p class="footer">AI Powered Fake News Detection</p>
+
+</div>
+
+
+<!-- PARTICLES SCRIPT -->
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script>
+
+particlesJS("particles-js", {
+
+particles:{
+
+number:{value:60},
+
+color:{value:"#22c55e"},
+
+shape:{type:"circle"},
+
+opacity:{value:0.6},
+
+size:{value:3},
+
+line_linked:{
+enable:true,
+distance:150,
+color:"#22c55e",
+opacity:0.4,
+width:1
+},
+
+move:{
+enable:true,
+speed:2
+}
+
+},
+
+interactivity:{
+events:{
+onhover:{
+enable:true,
+mode:"grab"
+}
+}
+}
+
+})
+
+
+function showRegister(){
+
+document.getElementById("loginForm").classList.add("hidden")
+document.getElementById("registerForm").classList.remove("hidden")
+document.getElementById("forgotForm").classList.add("hidden")
+
+document.getElementById("loginLinks").classList.add("hidden")
+document.getElementById("backLink").classList.remove("hidden")
+
+}
+
+function showForgot(){
+
+document.getElementById("loginForm").classList.add("hidden")
+document.getElementById("registerForm").classList.add("hidden")
+document.getElementById("forgotForm").classList.remove("hidden")
+
+document.getElementById("loginLinks").classList.add("hidden")
+document.getElementById("backLink").classList.remove("hidden")
+
+}
+
+function showLogin(){
+
+document.getElementById("loginForm").classList.remove("hidden")
+document.getElementById("registerForm").classList.add("hidden")
+document.getElementById("forgotForm").classList.add("hidden")
+
+document.getElementById("loginLinks").classList.remove("hidden")
+document.getElementById("backLink").classList.add("hidden")
+
+}
+
+</script>
+
+</body>
+
+</html>
